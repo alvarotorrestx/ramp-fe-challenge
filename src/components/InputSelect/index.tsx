@@ -51,7 +51,9 @@ export function InputSelect<TItem>({
         const parsedSelectedItem = selectedItem === null ? null : parseItem(selectedItem)
 
         return (
-          <div className="RampInputSelect--root">
+          <div className={classNames("RampInputSelect--root", {
+            "RampInputSelect--root-opened": isOpen,
+          })}>
             <label className="RampText--s RampText--hushed" {...getLabelProps()}>
               {label}
             </label>
@@ -71,7 +73,7 @@ export function InputSelect<TItem>({
                 "RampInputSelect--dropdown-container-opened": isOpen,
               })}
               {...getMenuProps()}
-              style={{ top: dropdownPosition.top, left: dropdownPosition.left }}
+              style={{ top: dropdownPosition.top, left: dropdownPosition.left, marginTop: '1.75rem' }}
             >
               {renderItems()}
             </div>
@@ -122,8 +124,8 @@ const getDropdownPosition: GetDropdownPositionFn = (target) => {
     const { top, left } = target.getBoundingClientRect()
     const { scrollY } = window
     return {
-      top: scrollY + top + 63,
-      left,
+      top: 0,
+      left: 0,
     }
   }
 
